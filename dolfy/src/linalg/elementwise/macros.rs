@@ -69,6 +69,9 @@ macro_rules! define_ternary_elementwise_op {
             #[inline(always)]
             pub fn [<par_ $op _ $ty>](x: &[$ty], y: &[$ty], z: &[$ty], dst: &mut [$ty], chunk_size: usize) {
                 assert!(chunk_size > 0);
+                assert_eq!(x.len(), y.len());
+                assert_eq!(x.len(), z.len());
+                assert_eq!(x.len(), dst.len());
                 x.par_chunks(chunk_size).zip(y.par_chunks(chunk_size)).zip(z.par_chunks(chunk_size)).zip(dst.par_chunks_mut(chunk_size))
                     .for_each(|(((x, y), z), dst)| { [< $op _ $ty>](x, y, z, dst) });
             }
@@ -138,6 +141,8 @@ macro_rules! define_binary_elementwise_op {
             #[inline(always)]
             pub fn [<par_ $op _ $ty>](x: &[$ty], y: &[$ty], dst: &mut [$ty], chunk_size: usize) {
                 assert!(chunk_size > 0);
+                assert_eq!(x.len(), y.len());
+                assert_eq!(x.len(), dst.len());
                 x.par_chunks(chunk_size).zip(y.par_chunks(chunk_size)).zip(dst.par_chunks_mut(chunk_size))
                     .for_each(|((x, y), dst)| { [< $op _ $ty>](x, y, dst) });
             }
@@ -198,6 +203,7 @@ macro_rules! define_unary_elementwise_op {
             #[inline(always)]
             pub fn [<par_ $op _ $ty>](x: &[$ty], dst: &mut [$ty], chunk_size: usize) {
                 assert!(chunk_size > 0);
+                assert_eq!(x.len(), dst.len());
                 x.par_chunks(chunk_size).zip(dst.par_chunks_mut(chunk_size)).for_each(|(x_chunk, dst_chunk)| {
                     [<$op _ $ty>](x_chunk, dst_chunk);
                 });

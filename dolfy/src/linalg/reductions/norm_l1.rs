@@ -33,6 +33,10 @@ macro_rules! define_norm_l1 {
                         acc[7] = simd.[<add_ $ty s>](acc[7], simd.[<abs_ $ty s>](x7));
                     }
 
+                    for vector in head {
+                        acc[0] = simd.[<add_ $ty s>](acc[0], simd.[<abs_ $ty s>](vector));
+                    }
+
                     acc[0] = simd.[<add_ $ty s>](acc[0], acc[1]);
                     acc[1] = simd.[<add_ $ty s>](acc[2], acc[3]);
                     acc[2] = simd.[<add_ $ty s>](acc[4], acc[5]);
@@ -74,12 +78,12 @@ pub fn norm_l1_f64(x: &[f64]) -> f64 {
 #[inline(always)]
 // Parallel computes the L1 norm of a slice of `f32` values.
 pub fn par_norm_l1_f32(x: &[f32], chunk_size: usize) -> f32 {
-    x.par_chunks(chunk_size).map(|x| norm_l1_f32(x)).sum()
+    x.par_chunks(chunk_size).map(norm_l1_f32).sum()
 }
 
 #[cfg(feature = "parallel")]
 #[inline(always)]
 // Parallel computes the L1 norm of a slice of `f64` values.
 pub fn par_norm_l1_f64(x: &[f64], chunk_size: usize) -> f64 {
-    x.par_chunks(chunk_size).map(|x| norm_l1_f64(x)).sum()
+    x.par_chunks(chunk_size).map(norm_l1_f64).sum()
 }

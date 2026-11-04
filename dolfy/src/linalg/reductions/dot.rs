@@ -88,6 +88,8 @@ pub fn dot_f64(x: &[f64], y: &[f64]) -> f64 {
 #[inline(always)]
 /// Parallel computes the dot product of two slices of `f32` values.
 pub fn par_dot_f32(x: &[f32], y: &[f32], chunk_size: usize) -> f32 {
+    assert!(chunk_size > 0);
+    assert_eq!(x.len(), y.len());
     x.par_chunks(chunk_size).zip(y.par_chunks(chunk_size)).map(|(x, y)| dot_f32(x, y)).sum()
 }
 
@@ -95,5 +97,7 @@ pub fn par_dot_f32(x: &[f32], y: &[f32], chunk_size: usize) -> f32 {
 #[inline(always)]
 /// Parallel computes the dot product of two slices of `f64` values.
 pub fn par_dot_f64(x: &[f64], y: &[f64], chunk_size: usize) -> f64 {
+    assert!(chunk_size > 0);
+    assert_eq!(x.len(), y.len());
     x.par_chunks(chunk_size).zip(y.par_chunks(chunk_size)).map(|(x, y)| dot_f64(x, y)).sum()
 }
