@@ -1,7 +1,7 @@
 #![allow(clippy::too_many_arguments)]
 
-mod define;
-use define::define_matmul;
+mod macros;
+use macros::define_matmul;
 
 pub const DEFAULT_MC: usize = 96;
 pub const DEFAULT_NC: usize = 1024;

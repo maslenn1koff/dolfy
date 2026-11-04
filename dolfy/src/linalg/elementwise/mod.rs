@@ -4,7 +4,7 @@ use reviero::{SimdFn, dispatch};
 use std::ops::{Add, Div, Mul, Neg, Sub};
 
 mod macros;
-use crate::{define_binary_elementwise_op, define_scalar_op, define_unary_elementwise_op};
+use macros::*;
 
 define_binary_elementwise_op!(f32, add);
 define_binary_elementwise_op!(f32, sub);

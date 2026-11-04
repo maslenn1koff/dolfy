@@ -1,4 +1,3 @@
-#[macro_export]
 macro_rules! define_binary_elementwise_op {
     ($ty:ident, $op:ident) => {
         paste::paste! {
@@ -68,7 +67,6 @@ macro_rules! define_binary_elementwise_op {
     };
 }
 
-#[macro_export]
 macro_rules! define_unary_elementwise_op {
     ($ty:ident, $op:ident) => {
         paste::paste! {
@@ -130,7 +128,6 @@ macro_rules! define_unary_elementwise_op {
     };
 }
 
-#[macro_export]
 macro_rules! define_scalar_op {
     ($ty:ty, $op:ident) => {
         paste::paste! {
@@ -158,3 +155,7 @@ macro_rules! define_scalar_op {
         }
     };
 }
+
+pub(crate) use define_binary_elementwise_op;
+pub(crate) use define_unary_elementwise_op;
+pub(crate) use define_scalar_op;
