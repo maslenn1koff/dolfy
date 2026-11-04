@@ -6,6 +6,9 @@ use std::ops::{Add, Div, Mul, Neg, Sub};
 mod macros;
 use macros::*;
 
+define_ternary_elementwise_op!(f32, mul_add);
+define_ternary_elementwise_op!(f64, mul_add);
+
 define_binary_elementwise_op!(f32, add);
 define_binary_elementwise_op!(f32, sub);
 define_binary_elementwise_op!(f32, mul);

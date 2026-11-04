@@ -1,4 +1,3 @@
-#[macro_export]
 macro_rules! define_matmul {
     ($ty:ident, $module:ident) => {
         paste::paste! {
