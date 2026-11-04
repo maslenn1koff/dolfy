@@ -33,26 +33,16 @@ define_matmul!(f32, imp_f32);
 define_matmul!(f64, imp_f64);
 
 use imp_f32::{
-    configure_matmul as im_configure_matmul_f32,
-    configure_matmul_serial as im_configure_matmul_serial_f32, matmul as im_matmul_f32,
-    matmul_serial as im_matmul_serial_f32,
+    configure_matmul as im_configure_matmul_f32, configure_matmul_serial as im_configure_matmul_serial_f32, matmul as im_matmul_f32, matmul_serial as im_matmul_serial_f32,
 };
 #[cfg(feature = "parallel")]
-use imp_f32::{
-    configure_matmul_parallel as im_configure_matmul_parallel_f32,
-    matmul_parallel as im_matmul_parallel_f32,
-};
+use imp_f32::{configure_matmul_parallel as im_configure_matmul_parallel_f32, matmul_parallel as im_matmul_parallel_f32};
 
 use imp_f64::{
-    configure_matmul as im_configure_matmul_f64,
-    configure_matmul_serial as im_configure_matmul_serial_f64, matmul as im_matmul_f64,
-    matmul_serial as im_matmul_serial_f64,
+    configure_matmul as im_configure_matmul_f64, configure_matmul_serial as im_configure_matmul_serial_f64, matmul as im_matmul_f64, matmul_serial as im_matmul_serial_f64,
 };
 #[cfg(feature = "parallel")]
-use imp_f64::{
-    configure_matmul_parallel as im_configure_matmul_parallel_f64,
-    matmul_parallel as im_matmul_parallel_f64,
-};
+use imp_f64::{configure_matmul_parallel as im_configure_matmul_parallel_f64, matmul_parallel as im_matmul_parallel_f64};
 
 macro_rules! define_fn {
     ($ty:ident) => {
