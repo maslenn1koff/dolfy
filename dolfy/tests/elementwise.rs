@@ -47,6 +47,8 @@ macro_rules! elementwise_tests {
                 assert_output!(x.iter().map(|value| -*value));
                 ew::[<ln_ $suffix>](&x, &mut dst);
                 assert_output!(x.iter().map(|value| value.ln()));
+                ew::[<tanh_ $suffix>](&x, &mut dst);
+                assert_output!(x.iter().map(|value| value.tanh()));
                 ew::[<exp_ $suffix>](&z, &mut dst);
                 assert_output!(z.iter().map(|value| value.exp()));
                 ew::[<log_ $suffix>](&x, 10.0, &mut dst);
@@ -57,6 +59,7 @@ macro_rules! elementwise_tests {
                 ew::[<mul_add_ $suffix>](&[], &[], &[], &mut empty);
                 ew::[<sqrt_ $suffix>](&[], &mut empty);
                 ew::[<ln_ $suffix>](&[], &mut empty);
+                ew::[<tanh_ $suffix>](&[], &mut empty);
                 ew::[<log_ $suffix>](&[], 10.0, &mut empty);
             }
 

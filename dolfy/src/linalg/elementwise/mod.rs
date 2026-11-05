@@ -32,8 +32,10 @@ define_unary_elementwise_op!(f64, neg);
 
 define_scalar_op!(f32, ln);
 define_scalar_op!(f32, exp);
+define_scalar_op!(f32, tanh);
 define_scalar_op!(f32, log, f32);
 
 define_scalar_op!(f64, ln);
 define_scalar_op!(f64, exp);
+define_scalar_op!(f64, tanh);
 define_scalar_op!(f64, log, f64);
